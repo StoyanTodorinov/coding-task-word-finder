@@ -43,7 +43,7 @@ public class Solution {
 
     /**
      * Search recursively into our grouped words by removing one letter at a time until we find a 2-letter word match
-     * or until the word candidate doesn't match any of the grouped words
+     * or until the word candidate doesn't match any of the grouped words.
      */
     public static boolean isValidWord(Map<Integer, Set<String>> groupedWords, String word) {
         if (word.length() == 2) {
@@ -52,7 +52,8 @@ public class Solution {
 
         for (int i = 0; i < word.length(); i++) {
             String candidateWord = word.substring(0, i) + word.substring(i + 1);
-            if (groupedWords.get(candidateWord.length()).contains(candidateWord)) {
+            if (groupedWords.containsKey(candidateWord.length())
+                    && groupedWords.get(candidateWord.length()).contains(candidateWord)) {
                 return isValidWord(groupedWords, candidateWord);
             }
         }
